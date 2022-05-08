@@ -1,0 +1,31 @@
+<div class="row">
+    <h1><%=name%></h1>
+</div>
+<div class="row">
+    <%=form_with model:@task do |f|%>
+    <div class="input-group mb-3">
+        <%= f.text_field :name, class: 'form-control', placeholder:'Nombre de la tarea' %>
+        <%@task.errors.full_messages_for(:name).each do |mesage|%>
+            <p>El nombre no puede estar vacío</p>
+        <%end%>
+    </div>
+    
+    <div class="input-group mb-3">
+        <%= f.text_field :description, class: 'form-control', placeholder:'Descripción de la tarea' %>
+        <%@task.errors.full_messages_for(:description).each do |mesage|%>
+            <p>La descripción no puede estar vacía</p>
+        <%end%>
+    </div>
+    
+    <div class="input-group mb-3">
+        <%= f.select :priority , options_for_select([['Alta', 1], ['Media', 2], ['Baja',3]], 2),{},{:class=>'form-control'} %>
+    </div>
+    <%if name=="Editar tarea"%>
+        <div class="input-group mb-3">
+            <%= f.select :status , options_for_select([['Tarea por hacer', 1], ['Tarea en curso', 2],['Tarea terminada',3]], @task.status),{},{:class=>'form-control'} %>
+        </div>
+    <%end%>
+    <%=f.submit "Guardar",class:"btn btn-primary"%>
+    <a href="/tasks" class="btn btn-secondary">Volver</a>
+    <%end%>
+</div>
