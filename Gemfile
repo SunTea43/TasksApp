@@ -73,3 +73,10 @@ end
 
 #Gem devise for authentication
 gem 'devise', '~> 4.8', '>= 4.8.1'
+
+#Gem ransack for filtering
+gem 'ransack'
+
+#Gem axlsx for excel
+gem 'axlsx'
+gem "axlsx_rails"

@@ -1,7 +1,13 @@
 class TasksController < ApplicationController
   before_action :validate_user, only: [:new,:index,:show, :create, :edit, :update, :destroy]
   def index
-    @tasks = Task.all
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
+    respond_to do |format| 
+      format.html
+      format.xlsx {render xlsx: 'download',filename: "tasks.xlsx"}
+    end
+       
   end
 
   def show
@@ -49,6 +55,7 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path, status: :see_other
   end
+  
   private
   def task_params
     params.require(:task).permit(:name, :description, :priority, :status)

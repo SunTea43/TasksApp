@@ -1,0 +1,16 @@
+<%= search_form_for @q do |f| %>
+    <div class="input-group mb-3">
+        <label for="name_cont">Nombre de tarea</label>
+        <%= f.search_field :name_cont,class: 'form-control' %>
+        <label for="description_cont">Descripción</label>
+        <%= f.search_field :description_cont,class: 'form-control'%>
+    </div>
+    
+    <div class="input-group mb-3">
+        <label for="created_at">Fecha de creación</label>
+        <%= f.date_field :created_at,class: 'form-control'%>
+        <label for="updated_at">Fecha de edición</label>
+        <%= f.date_field :updated_at,class: 'form-control'%>
+    </div>
+    <%= f.submit class:'btn btn-primary'%>
+<% end %>
