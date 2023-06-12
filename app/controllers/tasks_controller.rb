@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
-  before_action :validate_user, only: [:new,:index,:show, :create, :edit, :update, :destroy]
+  before_action :validate_user, only: %i[new index show create edit update destroy]
   def index
     @q = Task.ransack(params[:q])
     @tasks = @q.result(distinct: true)
-    respond_to do |format| 
+    respond_to do |format|
       format.html
-      format.xlsx {render xlsx: 'download',filename: "tasks.xlsx"}
+      format.xlsx { render xlsx: 'download', filename: 'tasks.xlsx' }
     end
-       
   end
 
   def show
@@ -20,9 +21,9 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(name: params[:task][:name],
-       description: params[:task][:description],
-        priority: params[:task][:priority],
-        status: params[:task][:status])
+                     description: params[:task][:description],
+                     priority: params[:task][:priority],
+                     status: params[:task][:status])
 
     if @task.save
       redirect_to tasks_path
@@ -42,21 +43,22 @@ class TasksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   def validate_user
-    unless user_signed_in?
-      redirect_to root_path
-    end
+    return if user_signed_in?
+
+    redirect_to root_path
   end
+
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, status: :see_other
   end
-  
+
   private
+
   def task_params
     params.require(:task).permit(:name, :description, :priority, :status)
   end
