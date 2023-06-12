@@ -16,3 +16,4 @@ AllCops:
     - 'script/**/*'
     - 'bin/{rails,rake,bundle}'
     - !ruby/regexp /old_and_unused\.rb$/
+    - 'app/mailers/application_mailer.rb'
