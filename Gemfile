@@ -54,7 +54,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   
-  gem 'bundler-audit', '~> 0.9.1'
 end
 
 group :development do
@@ -73,8 +72,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "brakeman"
-  gem "rubocop"
 end
 
 #Gem devise for authentication
@@ -86,3 +83,7 @@ gem 'ransack'
 #Gem axlsx for excel
 gem 'axlsx'
 gem "caxlsx_rails"
+
+gem 'bundler-audit', '~> 0.9.1'
+gem 'brakeman', '~> 6.0'
+gem 'rubocop', '~> 1.52', '>= 1.52.1'
