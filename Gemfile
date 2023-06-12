@@ -87,6 +87,7 @@ gem 'caxlsx_rails'
 
 gem 'brakeman', '~> 6.0'
 gem 'bundler-audit', '~> 0.9.1'
+gem 'rspec', '~> 3.12'
 gem 'rubocop', '~> 1.52', '>= 1.52.1'
 gem 'rubocop-capybara', '~> 2.18'
 gem 'rubocop-discourse', '~> 3.2'
