@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TasksController
 class TasksController < ApplicationController
   before_action :validate_user, only: %i[new index show create edit update destroy]
   def index
@@ -20,10 +21,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(name: params[:task][:name],
-                     description: params[:task][:description],
-                     priority: params[:task][:priority],
-                     status: params[:task][:status])
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to tasks_path
