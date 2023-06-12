@@ -82,3 +82,5 @@ gem 'ransack'
 #Gem axlsx for excel
 gem 'axlsx'
 gem "caxlsx_rails"
+
+gem 'bundler-audit', '~> 0.9.1'
